@@ -1,0 +1,11 @@
+name: LongPickPlus
+main: longpick.plus.LongPickPlus
+version: 2.0.0
+author: amata1219(Twitter-@amata1219)
+
+commands:
+  longpick+:
+    description: LongPick+ main command.
+    usage: /<command>
+    permission: longpick.plus.longpick
+    permission-message: You don't have <permission>.
