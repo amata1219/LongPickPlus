@@ -29,18 +29,18 @@ public class EventListeners implements Listener{
 
 	LongPickPlus plugin = LongPickPlus.plugin;
 	MainCommand mc = LongPickPlus.mc;
-	
+
 	public ItemStack item;
-	
+
 	@SuppressWarnings({ "deprecation" })
 	@EventHandler
 	public void onPlayerSwapHandItemsEvent(PlayerSwapHandItemsEvent e){
 		Player p = e.getPlayer();
 		Block b = getTargetBlock(p);
+		if(!nullCheck(b))return;
 		Material m = b.getType();
 		int id = b.getTypeId();
 		byte data = b.getData();
-		if(!nullCheck(b))return;
 		if(!p.hasPermission(plugin.permission))return;
 		if(!plugin.getConfig().getBoolean("PlayerData." + p.getUniqueId() + ".PickMode"))return;
 		if(m.equals(Material.DIODE_BLOCK_OFF) || m.equals(Material.DIODE_BLOCK_ON)){
@@ -74,7 +74,7 @@ public class EventListeners implements Listener{
 			}
 			if(!flag)item = new ItemStack(m);
 		}
-		
+
 		if(m.equals(Material.LEAVES)||m.equals(Material.LEAVES_2)||m.equals(Material.LOG)||m.equals(Material.LOG_2)){
 			item = new ItemStack(m);
 			Leaves leaves = new Leaves();
@@ -195,7 +195,7 @@ public class EventListeners implements Listener{
 			e.setCancelled(true);
 		}
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onBlockPlaceEvent(BlockPlaceEvent e){
@@ -236,7 +236,7 @@ public class EventListeners implements Listener{
 			}
 		}
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInteractEvent(PlayerInteractEvent e){
@@ -313,7 +313,7 @@ public class EventListeners implements Listener{
 			}
 		}
 	}
-	
+
 	@SuppressWarnings({ "deprecation" })
 	private void setDataPlus(Block b){
 		byte data = b.getData();
@@ -323,7 +323,7 @@ public class EventListeners implements Listener{
 		}
 		b.setData(newData);
 	}
-	
+
 	@SuppressWarnings({ "deprecation" })
 	private void setDataMinus(Block b){
 		byte data = b.getData();
@@ -333,7 +333,7 @@ public class EventListeners implements Listener{
 		}
 		b.setData(newData);
 	}
-	
+
 	private Block getTargetBlock(Player p){
 		BlockIterator bi = new BlockIterator(p, 256);
 		while(bi.hasNext()){
@@ -342,52 +342,52 @@ public class EventListeners implements Listener{
 		}
 		return null;
 	}
-	
+
 	public List<Material> list1(){
 		List<Material> list = new ArrayList<Material>(Arrays.asList(Material.LEAVES, Material.LEAVES_2,
-				Material.DOUBLE_PLANT, Material.WALL_BANNER, Material.STANDING_BANNER, Material.FLOWER_POT, 
-				Material.SKULL, Material.CHEST, Material.TRAPPED_CHEST, Material.LOG, Material.LOG_2, Material.STEP, 
-				Material.WOOD_STEP, Material.SIGN_POST, Material.WALL_SIGN, Material.BED_BLOCK, Material.QUARTZ_BLOCK, 
+				Material.DOUBLE_PLANT, Material.WALL_BANNER, Material.STANDING_BANNER, Material.FLOWER_POT,
+				Material.SKULL, Material.CHEST, Material.TRAPPED_CHEST, Material.LOG, Material.LOG_2, Material.STEP,
+				Material.WOOD_STEP, Material.SIGN_POST, Material.WALL_SIGN, Material.BED_BLOCK, Material.QUARTZ_BLOCK,
 				Material.ANVIL, Material.PISTON_EXTENSION, Material.SAPLING));
 		return list;
 	}
-	
+
 	public List<Material> list2(){
-		List<Material> list = new ArrayList<Material>(Arrays.asList(Material.WATER, Material.STATIONARY_WATER, Material.LAVA, 
-				Material.STATIONARY_LAVA, Material.CROPS, Material.CARROT, Material.POTATO, Material.PUMPKIN_STEM, 
-				Material.MELON_STEM, Material.NETHER_WART_BLOCK, Material.SUGAR_CANE_BLOCK, Material.DOUBLE_STEP, 
-				Material.WOOD_DOUBLE_STEP, Material.PURPUR_DOUBLE_SLAB, Material.DOUBLE_STONE_SLAB2, Material.PORTAL, 
-				Material.ENDER_PORTAL, Material.END_GATEWAY, Material.CHORUS_PLANT, Material.CHORUS_FLOWER, Material.REDSTONE_WIRE, 
+		List<Material> list = new ArrayList<Material>(Arrays.asList(Material.WATER, Material.STATIONARY_WATER, Material.LAVA,
+				Material.STATIONARY_LAVA, Material.CROPS, Material.CARROT, Material.POTATO, Material.PUMPKIN_STEM,
+				Material.MELON_STEM, Material.NETHER_WART_BLOCK, Material.SUGAR_CANE_BLOCK, Material.DOUBLE_STEP,
+				Material.WOOD_DOUBLE_STEP, Material.PURPUR_DOUBLE_SLAB, Material.DOUBLE_STONE_SLAB2, Material.PORTAL,
+				Material.ENDER_PORTAL, Material.END_GATEWAY, Material.CHORUS_PLANT, Material.CHORUS_FLOWER, Material.REDSTONE_WIRE,
 				Material.TRIPWIRE, Material.FIRE, Material.FROSTED_ICE, Material.PISTON_EXTENSION, Material.BEETROOT_BLOCK));
 		return list;
 	}
-	
+
 	public List<Material> list3(){
-		List<Material> list = new ArrayList<Material>(Arrays.asList(Material.ACACIA_DOOR, Material.BIRCH_DOOR, Material.DARK_OAK_DOOR, 
+		List<Material> list = new ArrayList<Material>(Arrays.asList(Material.ACACIA_DOOR, Material.BIRCH_DOOR, Material.DARK_OAK_DOOR,
 				Material.JUNGLE_DOOR, Material.SPRUCE_DOOR, Material.WOOD_DOOR, Material.CAULDRON, Material.BREWING_STAND));
 		return list;
 	}
-	
+
 	public List<Material> list4(){
-		List<Material> list = new ArrayList<Material>(Arrays.asList(Material.DIODE, Material.REDSTONE_COMPARATOR, Material.CAKE, 
-				Material.WOOD_DOOR, Material.IRON_DOOR, Material.ACACIA_DOOR_ITEM, Material.BIRCH_DOOR_ITEM, Material.DARK_OAK_DOOR_ITEM, 
-				Material.JUNGLE_DOOR_ITEM, Material.SPRUCE_DOOR_ITEM, Material.ANVIL, Material.PURPUR_SLAB, Material.STONE_SLAB2, 
-				Material.BED, Material.CAULDRON_ITEM, Material.LEAVES, Material.LEAVES_2, 
-				Material.DOUBLE_PLANT, Material.WALL_BANNER, Material.STANDING_BANNER, Material.FLOWER_POT, 
-				Material.SKULL_ITEM, Material.CHEST, Material.TRAPPED_CHEST, Material.LOG, Material.LOG_2, Material.STEP, 
+		List<Material> list = new ArrayList<Material>(Arrays.asList(Material.DIODE, Material.REDSTONE_COMPARATOR, Material.CAKE,
+				Material.WOOD_DOOR, Material.IRON_DOOR, Material.ACACIA_DOOR_ITEM, Material.BIRCH_DOOR_ITEM, Material.DARK_OAK_DOOR_ITEM,
+				Material.JUNGLE_DOOR_ITEM, Material.SPRUCE_DOOR_ITEM, Material.ANVIL, Material.PURPUR_SLAB, Material.STONE_SLAB2,
+				Material.BED, Material.CAULDRON_ITEM, Material.LEAVES, Material.LEAVES_2,
+				Material.DOUBLE_PLANT, Material.WALL_BANNER, Material.STANDING_BANNER, Material.FLOWER_POT,
+				Material.SKULL_ITEM, Material.CHEST, Material.TRAPPED_CHEST, Material.LOG, Material.LOG_2, Material.STEP,
 				Material.WOOD_STEP, Material.SIGN, Material.QUARTZ_BLOCK, Material.SAPLING));
 		return list;
 	}
-	
+
 	public List<Material> list6(){
 		List<Material> list = new ArrayList<Material>(Arrays.asList(Material.SKULL, Material.WALL_BANNER, Material.STANDING_BANNER,
 				Material.WALL_SIGN, Material.SIGN_POST, Material.FLOWER_POT, Material.BED_BLOCK, Material.CHEST, Material.TRAPPED_CHEST,
-				Material.FURNACE, Material.DISPENSER, Material.DROPPER, Material.DOUBLE_PLANT, Material.ACACIA_DOOR, Material.BIRCH_DOOR, 
-				Material.DARK_OAK_DOOR, Material.JUNGLE_DOOR, Material.IRON_DOOR_BLOCK, Material.IRON_TRAPDOOR, Material.WOOD_DOOR, 
+				Material.FURNACE, Material.DISPENSER, Material.DROPPER, Material.DOUBLE_PLANT, Material.ACACIA_DOOR, Material.BIRCH_DOOR,
+				Material.DARK_OAK_DOOR, Material.JUNGLE_DOOR, Material.IRON_DOOR_BLOCK, Material.IRON_TRAPDOOR, Material.WOOD_DOOR,
 				Material.TORCH, Material.REDSTONE_TORCH_ON));
 		return list;
 	}
-	
+
 	private boolean nullCheck(Object obj){
 		if(obj != null)return true;
 		return false;
